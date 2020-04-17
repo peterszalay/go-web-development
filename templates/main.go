@@ -1,10 +1,10 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"os"
 	"strings"
-	"html/template"
 )
 
 // Passing complex struct to template

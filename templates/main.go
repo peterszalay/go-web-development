@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 	"strings"
-	"text/template"
+	"html/template"
 )
 
 // Passing complex struct to template

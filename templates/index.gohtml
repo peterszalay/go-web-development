@@ -8,17 +8,15 @@
 
 {{$years := .}}
 {{range $years}}
+    {{.Fall.Term | uc | aw "semester"}} {{.AcaYear}}<br>
 
-    {{$semester := .}}
-    {{uc $semester.Fall.Term}} {{$semester.AcaYear}}<br>
-
-    {{range $semester.Fall.Courses}}
+    {{range .Fall.Courses}}
         {{$course := .}}
         {{$course.Number}} - {{$course.Name}} - {{$course.Units}}<br>
     {{end}}
 
-    {{uc $semester.Spring.Term}} {{$semester.AcaYear}}<br>
-    {{range $semester.Spring.Courses}}
+    {{.Spring.Term | uc | aw "semester"}} {{.AcaYear}}<br>
+    {{range .Spring.Courses}}
         {{$course := .}}
         {{$course.Number}} - {{$course.Name}} - {{$course.Units}}<br>
     {{end}}

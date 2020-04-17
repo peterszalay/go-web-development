@@ -12,6 +12,7 @@ import (
 
 var fm = template.FuncMap{
 	"uc": strings.ToUpper,
+	"aw": attachWord,
 }
 
 type course struct {
@@ -30,6 +31,10 @@ type year struct {
 	Fall    semester
 	Spring  semester
 	Summer  semester
+}
+
+func attachWord(word string, s string) string {
+	return s + " " + word
 }
 
 var tpl *template.Template

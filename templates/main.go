@@ -3,10 +3,16 @@ package main
 import (
 	"log"
 	"os"
+	"strings"
 	"text/template"
 )
 
 // Passing complex struct to template
+// Using functions in templates (FuncMap needs to be created)
+
+var fm = template.FuncMap{
+	"uc": strings.ToUpper,
+}
 
 type course struct {
 	Number string
@@ -29,8 +35,11 @@ type year struct {
 var tpl *template.Template
 
 // init sets up the templates before main runs
+// funcs need to be passed before template files are parsed
+// otherwise error is thrown
 func init() {
-	tpl = template.Must(template.ParseFiles("index.gohtml"))
+	// name must be set when using Execute, can be empty when using ExecuteTemplate, because there naem must be given
+	tpl = template.Must(template.New("index.gohtml").Funcs(fm).ParseFiles("index.gohtml"))
 }
 
 func main() {

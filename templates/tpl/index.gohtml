@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p>{{template "page_contents"}}</p>
+    {{$years := .}}
+    {{range $years}}
+        {{.Fall.Term | uc | aw "semester"}} {{.AcaYear}}<br>
+
+        {{range .Fall.Courses}}
+            {{$course := .}}
+            {{$course.Number}} - {{$course.Name}} - {{$course.Units}}<br>
+        {{end}}
+
+        {{.Spring.Term | uc | aw "semester"}} {{.AcaYear}}<br>
+        {{range .Spring.Courses}}
+            {{$course := .}}
+            {{if ne $course.Number "CSCI-50"}}
+                {{$course.Number}} - {{$course.Name}} - {{$course.Units}}<br>
+            {{end}}
+        {{end}}
+    {{end}}
+</body>
+</html>

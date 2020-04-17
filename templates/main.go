@@ -44,7 +44,7 @@ var tpl *template.Template
 // otherwise error is thrown
 func init() {
 	// name must be set when using Execute, can be empty when using ExecuteTemplate, because there naem must be given
-	tpl = template.Must(template.New("index.gohtml").Funcs(fm).ParseFiles("index.gohtml"))
+	tpl = template.Must(template.New("").Funcs(fm).ParseGlob("tpl/*.gohtml"))
 }
 
 func main() {
@@ -89,7 +89,7 @@ func main() {
 		},
 	}
 
-	err := tpl.Execute(os.Stdout, years)
+	err := tpl.ExecuteTemplate(os.Stdout, "index.gohtml", years)
 	if err != nil {
 		log.Fatalln(err)
 	}
